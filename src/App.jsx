@@ -7,7 +7,7 @@ export default function App() {
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([]);
 
-    console.log(emojisData);
+    console.log({emojisData});
 
     async function startGame(e) {
         e.preventDefault()
@@ -17,8 +17,7 @@ export default function App() {
                 const data = await response.json();
                 const dataSlice = await getDataSlice(data);
                 const emojisArray = await getEmojisArray(dataSlice);
-                console.log({emojisArray});
-                
+
                 setEmojisData(emojisArray);
                 setIsGameOn(true);
             }
@@ -71,8 +70,9 @@ export default function App() {
         return pairedEmojisArray;
     }
 
-    function turnCard() {
-        
+    function turnCard(name, index) {
+        console.log(name);
+        console.log(index);
     }
     
     return (
