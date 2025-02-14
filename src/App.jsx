@@ -6,8 +6,9 @@ import './index.css';
 export default function App() {
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([]);
+    const [selectedCrads, setSelectedCards] = useState([]);
 
-    console.log({emojisData});
+    console.log({selectedCrads});
 
     async function startGame(e) {
         e.preventDefault()
@@ -71,8 +72,9 @@ export default function App() {
     }
 
     function turnCard(name, index) {
-        console.log(name);
-        console.log(index);
+
+        setSelectedCards([{name, index}]);
+
     }
     
     return (
