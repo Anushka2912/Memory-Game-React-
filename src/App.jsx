@@ -10,8 +10,6 @@ export default function App() {
     const [matchedCards, setMatchedCards] = useState([]);
     const [isGameOver, setIsGameOver] = useState(false);
 
-    console.log({isGameOver});
-
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
             setMatchedCards(prevMatchedCards => [...prevMatchedCards, ...selectedCards]); 
