@@ -1,10 +1,13 @@
-export default function EmojiButton ({ content, style, handleClick }) {
+export default function EmojiButton ({ content, handleClick, selectedCardEntry, matchedCardEntry }) {
+
+    const btnContent = selectedCardEntry || matchedCardEntry ? content : "?";
+
     return (
         <button
-            className={style}
+            className="btn btn--emoji"
             onClick={handleClick}
         >
-            {content}
+            {btnContent}
         </button>
     )
 }
