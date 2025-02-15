@@ -11,7 +11,7 @@ export default function App() {
     const [isGameOver, setIsGameOver] = useState(false);
 
     console.log({selectedCards});
-    
+
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
             setMatchedCards(prevMatchedCards => [...prevMatchedCards, ...selectedCards]); 
@@ -101,7 +101,7 @@ export default function App() {
         <main>
             <h1>Memory</h1>
             {!isGameOn && <Form handleSubmit={startGame} />}
-            {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} />}
+            {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
         </main>
     )
 }
