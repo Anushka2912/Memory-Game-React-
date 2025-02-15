@@ -1,10 +1,10 @@
-export default function EmojiButton () {
+export default function EmojiButton ({ content, style, handleClick }) {
     return (
         <button
-            className="btn btn--emoji"
-                onClick={() => handleClick(emoji.name, index)}
+            className={style}
+            onClick={handleClick}
         >
-            {decodeEntity(emoji.htmlCode[0])}
+            {content}
         </button>
     )
 }
