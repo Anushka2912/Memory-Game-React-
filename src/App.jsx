@@ -6,9 +6,7 @@ import './index.css';
 export default function App() {
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([]);
-    const [selectedCrads, setSelectedCards] = useState([]);
-
-    console.log({selectedCrads});
+    const [selectedCards, setSelectedCards] = useState([]);
 
     async function startGame(e) {
         e.preventDefault()
@@ -73,8 +71,14 @@ export default function App() {
 
     function turnCard(name, index) {
 
-        setSelectedCards([{name, index}]);
+        const selectedCardEntry = selectedCards.find(emoji => emoji.index === index);
 
+        if (!selectedCardEntry && selectedCards.length < 2) {
+            setSelectedCards(prevSelectedCards => [...prevSelectedCards, { name, index }])
+        }
+        else if (!selectedCardEntry && selectedCards.length === 2) {
+            setSelectedCards([{name, index}]);
+        }
     }
     
     return (
