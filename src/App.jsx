@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Form from './components/Form';
 import MemoryCard from './components/MemoryCard';
 import './index.css';
+import AssistiveTechInfo from './components/AssistiveTechInfo';
 
 export default function App() {
     const [isGameOn, setIsGameOn] = useState(false);
@@ -97,6 +98,7 @@ export default function App() {
         <main>
             <h1>Memory</h1>
             {!isGameOn && <Form handleSubmit={startGame} />}
+            {isGameOn && !areAllCardsMatched && <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} />}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
         </main>
     )
