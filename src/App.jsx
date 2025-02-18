@@ -7,11 +7,13 @@ import GameOver from './components/GameOver';
 import ErrorCard from './components/ErrorCard';
 
 export default function App() {
+
     const initialFormData = {
         category: "animals-and-nature",
         number: 10,
     }
 
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const [formData, setFormData] = useState(initialFormData);
     const [isGameOn, setIsGameOn] = useState(false);
     const [emojisData, setEmojisData] = useState([]);
@@ -53,6 +55,7 @@ export default function App() {
 
                 setEmojisData(emojisArray);
                 setIsGameOn(true);
+                setIsFirstRender(false);
             }
             else {
                 throw new Error("Error occured while fetching emoji categories");
@@ -61,6 +64,9 @@ export default function App() {
         catch(err) {
             console.log(err);
             setIsError(true);
+            setIsFirstRender(false);
+        } finally {
+            setIsFirstRender(false)            
         }
     }
     
@@ -128,7 +134,7 @@ export default function App() {
     return (
         <main>
             <h1>Memory</h1>
-            {!isGameOn && !isError && <Form handleSubmit={startGame} handleChange={handleFormChange} />}
+            {!isGameOn && !isError && <Form handleSubmit={startGame} handleChange={handleFormChange} isFirstRender={isFirstRender} />}
             {isGameOn && !areAllCardsMatched && <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} />}
             {areAllCardsMatched && <GameOver handleClick={resetGame}/>}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
