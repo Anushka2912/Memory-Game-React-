@@ -32,6 +32,10 @@ export default function App() {
         }
     }, [matchedCards]);
 
+    function handleFormChange(e) {
+        console.log(`${e.target.name}: ${e.target.value}`)
+    }
+    
     async function startGame(e) {
         e.preventDefault()
         try {
@@ -119,7 +123,7 @@ export default function App() {
     return (
         <main>
             <h1>Memory</h1>
-            {!isGameOn && !isError && <Form handleSubmit={startGame} />}
+            {!isGameOn && !isError && <Form handleSubmit={startGame} handleChange={handleFormChange} />}
             {isGameOn && !areAllCardsMatched && <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} />}
             {areAllCardsMatched && <GameOver handleClick={resetGame}/>}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
