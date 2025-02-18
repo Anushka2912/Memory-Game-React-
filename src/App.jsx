@@ -20,6 +20,8 @@ export default function App() {
     const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
     const [isError, setIsError] = useState(false);
 
+    console.log({formData})
+
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
             setMatchedCards(prevMatchedCards => [...prevMatchedCards, ...selectedCards]); 
@@ -33,9 +35,12 @@ export default function App() {
     }, [matchedCards]);
 
     function handleFormChange(e) {
-        console.log(`${e.target.name}: ${e.target.value}`)
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [e.target.name] : e.target.value
+        }))
     }
-    
+
     async function startGame(e) {
         e.preventDefault()
         try {
